@@ -115,8 +115,10 @@ $PHP_SELF = cleanurl($_SERVER['PHP_SELF']);
 
 // Common definitions
 define("FUSION_REQUEST", isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != "" ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME']);
-define("FUSION_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
-define("FUSION_SELF", basename($_SERVER['PHP_SELF']));
+if (!defined("IN_PERMALINK")) {
+	define("FUSION_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
+	define("FUSION_SELF", basename($_SERVER['PHP_SELF']));
+}
 define("FUSION_IP", $_SERVER['REMOTE_ADDR']);
 define("QUOTES_GPC", (ini_get('magic_quotes_gpc') ? TRUE : FALSE));
 
@@ -148,6 +150,22 @@ $forum_rank_cache = "";
 $forum_mod_rank_cache = "";
 $locale = array();
 
+// Calculate ROOT path for Permalinks
+$current_path = $_SERVER['REQUEST_URI'];
+if (isset($settings['site_path']) && strcmp($settings['site_path'],"/") != 0) {
+	$current_path = str_replace($settings['site_path'], "", $current_path);
+}
+else {
+	$current_path = ltrim($current_path,"/");
+}
+define("PERMALINK_CURRENT_PATH", $current_path);
+$count = substr_count(PERMALINK_CURRENT_PATH, "/");
+$root = "";
+for($i=0; $i<$count; $i++) {
+	$root .= "../";
+}
+define("ROOT", $root);
+
 // Calculate current true url
 $script_url = explode("/", $_SERVER['PHP_SELF']);
 $url_count = count($script_url);
@@ -159,8 +177,10 @@ while ($base_url_count != 0) {
 	$base_url_count--;
 }
 
-define("TRUE_PHP_SELF", $current_page);
-define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", TRUE_PHP_SELF.(FUSION_QUERY ? "?".FUSION_QUERY : "")), 1));
+if (!defined("IN_PERMALINK")) {
+	define("TRUE_PHP_SELF", $current_page);
+	define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", TRUE_PHP_SELF.(FUSION_QUERY ? "?".FUSION_QUERY : "")), 1));
+}
 
 // IP address functions
 include BASEDIR."includes/ip_handling_include.php";
