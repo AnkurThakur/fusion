@@ -57,9 +57,9 @@ if (($_GET['post'] == "on" || $_GET['post'] == "off") && $settings['thread_notif
 				$result = dbquery("DELETE FROM ".DB_THREAD_NOTIFY." WHERE thread_id='".$_GET['thread_id']."' AND notify_user='".$userdata['user_id']."'");
 				echo $locale['453']."<br /><br />\n";
 			}
-			echo "<a href='viewthread.php?forum_id=".$_GET['forum_id']."&amp;thread_id=".$_GET['thread_id']."'>".$locale['447']."</a> ::\n";
-			echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
-			echo "<a href='index.php'>".$locale['449']."</a><br /><br />\n</div>\n";
+			echo "<a href='".FORUM."viewthread.php?forum_id=".$_GET['forum_id']."&amp;thread_id=".$_GET['thread_id']."'>".$locale['447']."</a> ::\n";
+			echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
+			echo "<a href='".FORUM."index.php'>".$locale['449']."</a><br /><br />\n</div>\n";
 			closetable();
 		}
 	}
@@ -75,11 +75,11 @@ if (($_GET['post'] == "on" || $_GET['post'] == "off") && $settings['thread_notif
 	}
 	if ($_GET['error'] < 3) {
 		if (!isset($_GET['thread_id']) || !isnum($_GET['thread_id'])) { redirect("index.php"); }
-		echo "<a href='viewthread.php?thread_id=".$_GET['thread_id']."'>".$locale['447']."</a> ::\n";
+		echo "<a href='".FORUM."viewthread.php?thread_id=".$_GET['thread_id']."'>".$locale['447']."</a> ::\n";
 		add_to_head("<meta http-equiv='refresh' content='2; url=viewthread.php?thread_id=".$_GET['thread_id']."' />\n");
 	}
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
-	echo "<a href='index.php'>".$locale['449']."</a><br /><br /></div>\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
+	echo "<a href='".FORUM."index.php'>".$locale['449']."</a><br /><br /></div>\n";
 	closetable();
 } elseif ($_GET['post'] == "reply") {
 	if (!isset($_GET['thread_id']) || !isnum($_GET['thread_id'])) { redirect("index.php"); }
@@ -120,15 +120,15 @@ if (($_GET['post'] == "on" || $_GET['post'] == "off") && $settings['thread_notif
 				$result = dbquery("UPDATE ".DB_THREAD_NOTIFY." SET notify_status='0' WHERE thread_id='".$_GET['thread_id']."' AND notify_user!='".$userdata['user_id']."'");
 			}
 		}
-		echo "<a href='viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$_GET['post_id']."#post_".$_GET['post_id']."'>".$locale['447']."</a> ::\n";
+		echo "<a href='".FORUM."viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$_GET['post_id']."#post_".$_GET['post_id']."'>".$locale['447']."</a> ::\n";
 	} else {
 		if (!isset($_GET['thread_id']) || !isnum($_GET['thread_id'])) { redirect("index.php"); }
 		$data = dbarray(dbquery("SELECT post_id FROM ".DB_POSTS." WHERE thread_id='".$_GET['thread_id']."' ORDER BY post_id DESC"));
 		add_to_head("<meta http-equiv='refresh' content='4; url=viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$data['post_id']."#post_".$data['post_id']."' />\n");
-		echo "<a href='viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$data['post_id']."#post_".$data['post_id']."'>".$locale['447']."</a> ::\n";
+		echo "<a href='".FORUM."viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$data['post_id']."#post_".$data['post_id']."'>".$locale['447']."</a> ::\n";
 	}
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
-	echo "<a href='index.php'>".$locale['449']."</a><br /><br />\n</div>\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
+	echo "<a href='".FORUM."index.php'>".$locale['449']."</a><br /><br />\n</div>\n";
 	closetable();
 } elseif ($_GET['post'] == "edit") {
 	if (!isset($_GET['thread_id']) || !isnum($_GET['thread_id'])) { redirect("index.php"); }
@@ -141,9 +141,9 @@ if (($_GET['post'] == "on" || $_GET['post'] == "off") && $settings['thread_notif
 	} else {
 		echo $locale['446']."<br /><br />\n";
 	}
-	echo "<a href='viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$_GET['post_id']."#post_".$_GET['post_id']."'>".$locale['447']."</a> ::\n";
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
-	echo "<a href='index.php'>".$locale['449']."</a><br /><br />\n</div>\n";
+	echo "<a href='".FORUM."viewthread.php?thread_id=".$_GET['thread_id']."&amp;pid=".$_GET['post_id']."#post_".$_GET['post_id']."'>".$locale['447']."</a> ::\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['448']."</a> ::\n";
+	echo "<a href='".FORUM."index.php'>".$locale['449']."</a><br /><br />\n</div>\n";
 	closetable();
 }
 

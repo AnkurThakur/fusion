@@ -33,7 +33,7 @@ if (isset($_POST['previewreply'])) {
 	}
 	$is_mod = iMOD && iUSER < "102" ? true : false;
 	opentable($locale['402']);
-	echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><span class='small'><a href='index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</span></div>\n";
+	echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><span class='small'><a href='".FORUM."index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</span></div>\n";
 
 	echo "<table cellpadding='0' cellspacing='1' width='100%' class='tbl-border'>\n<tr>\n";
 	echo "<td colspan='2' class='tbl2'><strong>".$tdata['thread_subject']."</strong></td>\n</tr>\n";
@@ -160,7 +160,7 @@ if (isset($_POST['postreply'])) {
 	add_to_title($locale['global_201'].$locale['403']);
 	echo "<!--pre_postreply-->";
 	opentable($locale['403']);
-	if (!isset($_POST['previewreply'])) echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><a href='index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
+	if (!isset($_POST['previewreply'])) echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><a href='".FORUM."index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
 
 	echo "<form name='inputform' method='post' action='".FUSION_SELF."?action=reply&amp;forum_id=".$_GET['forum_id']."&amp;thread_id=".$_GET['thread_id']."' enctype='multipart/form-data'>\n";
 	echo "<table cellpadding='0' cellspacing='1' width='100%' class='tbl-border'>\n<tr>\n";

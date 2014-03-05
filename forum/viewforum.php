@@ -124,7 +124,7 @@ if (isset($_POST['delete_threads']) && iMOD) {
 }
 
 opentable($locale['450']);
-echo "<!--pre_forum--><div class='tbl2 forum_breadcrumbs'><a href='index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
+echo "<!--pre_forum--><div class='tbl2 forum_breadcrumbs'><a href='".FORUM."index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
 
 $rows = dbcount("(thread_id)", DB_THREADS, "forum_id='".$_GET['forum_id']."' AND thread_hidden='0'");
 
@@ -138,7 +138,7 @@ if ($rows > $threads_per_page || (iMEMBER && $can_post)) {
 	}
 	if (iMEMBER && $can_post) {
 		$post_info .= "<td align='right' style='padding:4px 0px 4px 0px'>";
-		$post_info .= "<a href='post.php?action=newthread&amp;forum_id=".$_GET['forum_id']."'>";
+		$post_info .= "<a href='".FORUM."post.php?action=newthread&amp;forum_id=".$_GET['forum_id']."'>";
 		$post_info .= "<img src='".get_image("newthread")."' alt='".$locale['566']."' style='border:0px;' /></a></td>\n";
 	}
 	$post_info .= "</tr>\n</table>\n";
@@ -184,12 +184,12 @@ if ($rows) {
 			echo "<td align='center' width='1%' class='tbl2' style='white-space:nowrap'>$folder</td>";
 		}
 		$reps = ceil($tdata['thread_postcount'] / $threads_per_page);
-		$threadsubject = "<a href='viewthread.php?thread_id=".$tdata['thread_id']."'>".$tdata['thread_subject']."</a>";
+		$threadsubject = "<a href='".FORUM."viewthread.php?thread_id=".$tdata['thread_id']."'>".$tdata['thread_subject']."</a>";
 		if ($reps > 1) {
 			$ctr = 0; $ctr2 = 1; $pages = ""; $middle = false;
 			while ($ctr2 <= $reps) {
 				if ($reps < 5 || ($reps > 4 && ($ctr2 == 1 || $ctr2 > ($reps-3)))) {
-					$pnum = "<a href='viewthread.php?thread_id=".$tdata['thread_id']."&amp;rowstart=$ctr'>$ctr2</a> ";
+					$pnum = "<a href='".FORUM."viewthread.php?thread_id=".$tdata['thread_id']."&amp;rowstart=$ctr'>$ctr2</a> ";
 				} else {
 					if ($middle == false) {
 						$middle = true; $pnum = "... ";

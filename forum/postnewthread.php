@@ -54,7 +54,7 @@ if (isset($_POST['previewpost']) || isset($_POST['add_poll_option'])) {
 		}
 		//$is_mod = iMOD && iUSER < "102" ? true : false;
 		opentable($locale['400']);
-		echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><a href='index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
+		echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><a href='".FORUM."index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
 
 		if ($fdata['forum_poll'] && checkgroup($fdata['forum_poll'])) {
 			if ((isset($poll_title) && $poll_title) && (isset($poll_opts) && is_array($poll_opts))) {
@@ -189,7 +189,7 @@ if (isset($_POST['postnewthread'])) {
 	add_to_title($locale['global_201'].$locale['401']);
 	echo "<!--pre_postnewthread-->";
 	opentable($locale['401']);
-	if (!isset($_POST['previewpost'])) { echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><a href='index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n"; }
+	if (!isset($_POST['previewpost'])) { echo "<div class='tbl2 forum_breadcrumbs' style='margin-bottom:5px'><a href='".FORUM."index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n"; }
 
 	echo "<form id='inputform' method='post' action='".FUSION_SELF."?action=newthread&amp;forum_id=".$_GET['forum_id']."' enctype='multipart/form-data'>\n";
 	echo "<table cellpadding='0' cellspacing='1' width='100%' class='tbl-border'>\n<tr>\n";

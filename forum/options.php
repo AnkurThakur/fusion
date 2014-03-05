@@ -67,8 +67,8 @@ if (isset($_GET['step']) && $_GET['step'] == "renew") {
 		$result = dbquery("UPDATE ".DB_FORUMS." SET forum_lastpost='".time()."', forum_lastuser='".$data['post_author']."' WHERE forum_id='".$_GET['forum_id']."'");
 		opentable($locale['458']);
 		echo "<div style='text-align:center'><br />\n".$locale['459']."<br /><br />\n";
-		echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
-		echo "<a href='index.php'>".$locale['403']."</a><br /><br /></div>\n";
+		echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
+		echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br /></div>\n";
 		closetable();
 	} else {
 		redirect("index.php");
@@ -122,7 +122,7 @@ if (isset($_GET['step']) && $_GET['step'] == "renew") {
 		}
 		echo $locale['401']."<br /><br />\n";
 		echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
-		echo "<a href='index.php'>".$locale['403']."</a><br /><br />\n";
+		echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br />\n";
 	}
 	echo "</div>\n";
 	closetable();
@@ -130,29 +130,29 @@ if (isset($_GET['step']) && $_GET['step'] == "renew") {
 	$result = dbquery("UPDATE ".DB_THREADS." SET thread_locked='1' WHERE thread_id='".$_GET['thread_id']."' AND thread_hidden='0'");
 	opentable($locale['410']);
 	echo "<div style='text-align:center'><br />\n".$locale['411']."<br /><br />\n";
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
-	echo "<a href='index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
+	echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
 	closetable();
 } elseif (isset($_GET['step']) && $_GET['step'] == "unlock") {
 	$result = dbquery("UPDATE ".DB_THREADS." SET thread_locked='0' WHERE thread_id='".$_GET['thread_id']."' AND thread_hidden='0'");
 	opentable($locale['420']);
 	echo "<div style='text-align:center'><br />\n".$locale['421']."<br /><br />\n";
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
-	echo "<a href='index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
+	echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
 	closetable();
 } elseif (isset($_GET['step']) && $_GET['step'] == "sticky") {
 	$result = dbquery("UPDATE ".DB_THREADS." SET thread_sticky='1' WHERE thread_id='".$_GET['thread_id']."' AND thread_hidden='0'");
 	opentable($locale['430']);
 	echo "<div style='text-align:center'><br />\n".$locale['431']."<br /><br />\n";
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
-	echo "<a href='index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
+	echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
 	closetable();
 } elseif (isset($_GET['step']) && $_GET['step'] == "nonsticky") {
 	$result = dbquery("UPDATE ".DB_THREADS." SET thread_sticky='0' WHERE thread_id='".$_GET['thread_id']."' AND thread_hidden='0'");
 	opentable($locale['440']);
 	echo "<div style='text-align:center'><br />".$locale['441']."<br /><br />\n";
-	echo "<a href='viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
-	echo "<a href='index.php'>".$locale['403']."</a><br /><br /></div>\n";
+	echo "<a href='".FORUM."viewforum.php?forum_id=".$_GET['forum_id']."'>".$locale['402']."</a><br /><br />\n";
+	echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br /></div>\n";
 	closetable();
 } elseif (isset($_GET['step']) && $_GET['step'] == "move") {
 	opentable($locale['450']);
@@ -185,7 +185,7 @@ if (isset($_GET['step']) && $_GET['step'] == "renew") {
 		}
 
 		echo "<div style='text-align:center'><br />\n".$locale['452']."<br /><br />\n";
-		echo "<a href='index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
+		echo "<a href='".FORUM."index.php'>".$locale['403']."</a><br /><br />\n</div>\n";
 	} else {
 		$move_list = ""; $sel = "";
 		$result = dbquery("SELECT forum_id, forum_name FROM ".DB_FORUMS." WHERE forum_cat='0' ORDER BY forum_order");
